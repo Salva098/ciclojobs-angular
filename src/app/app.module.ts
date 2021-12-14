@@ -43,6 +43,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const materialModules = [
   CdkTreeModule,
@@ -93,7 +94,8 @@ const materialModules = [
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    materialModules
+    materialModules,
+    HttpClientModule 
     
   ],
   providers: [],

@@ -8,16 +8,19 @@
       <form class="example-form">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" [formControl]="emailFormControl">
+            <input matInput placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl">
           </mat-form-field>
   
           <mat-form-field class="example-full-width" >
-            <input matInput [type]="hide ? 'text': 'password'" placeholder="Password" [formControl]="inputFormControl">
+            <input matInput [type]="hide ? 'text': 'password'" [(ngModel)]="constrasena" placeholder="Password" [formControl]="inputFormControl">
             <mat-icon matSuffix (click)="hide=!hide" >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
+        <div *ngIf="error">
+          <mat-error>Error al login</mat-error>
+        </div>
         </mat-card-content>
         <a mat-button color="primary" routerLink="../register" routerLinkActive="active" class="btn-block">Not registered?</a>
-        <button mat-flat-button color="primary" routerLink="../home" routerLinkActive="active" class="btn-block">Log in</button>
+        <a mat-flat-button color="primary" (click)="login()" routerLinkActive="active" class="btn-block">Log in</a>
       </form>
     </mat-card>
   
