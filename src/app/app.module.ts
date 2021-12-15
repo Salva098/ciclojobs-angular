@@ -44,6 +44,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PerfilComponent } from './perfil/perfil.component';
+
 
 const materialModules = [
   CdkTreeModule,
@@ -87,7 +89,9 @@ const materialModules = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    PerfilComponent,
+
   ],
   imports: [
     BrowserModule,

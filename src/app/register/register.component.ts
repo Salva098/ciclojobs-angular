@@ -2,6 +2,8 @@ import { RegisterService } from './../_servicies/register.service';
 import { provincia } from './../_models/provincias';
 import { emprsesa } from './../_models/empresa';
 import { Component, OnInit } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {
   FormControl,
   FormGroupDirective,
@@ -28,7 +30,7 @@ export class RegisterComponent implements OnInit {
   hide = false;
   nombreEmpresa = '';
   email = '';
-  provinciaselect='';
+  provinciaselect=0;
   password = '';
   passwordConfirm = '';
   localidad = '';
@@ -52,30 +54,39 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {}
 
-  changeselected(prov: string){
-    this.provinciaselect=prov;
+  changeselected(prov: provincia){
+    this.provinciaselect=prov.id;
+  }
+
+  toLogin(){
+    // this.route.navigate.
   }
 
   submit() {
     if (this.password == this.passwordConfirm) {
       let idprovincia:number=0;
       
-      this.provincias.forEach((prov: provincia) => {
-        if(prov.provincias==this.provinciaselect){
-          idprovincia=prov.id
-        }
-      });
+      // this.provincias.forEach((prov: provincia) => {
+      //   if(prov.provincias==this.provinciaselect){
+      //     idprovincia=prov.id
+      //   }
+      // });
+      console.log(this.provinciaselect)
       let empresa:emprsesa={
         email: this.email,
         nombre: this.nombreEmpresa,
         contrasena: this.password,
         localidad: this.localidad,
         direccion: this.direccion,
-        idprovincias: idprovincia
+        idprovincias: this.provinciaselect
       };
+      
       this.serviceRegister.register(empresa).subscribe(
         resp=>{
-          console.log(resp.valueOf())
+          this.toLogin();
+        },
+        error=>{
+          
         }
       )
     }

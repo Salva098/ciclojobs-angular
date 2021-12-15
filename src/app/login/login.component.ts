@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   email
   constrasena
   error=false
+  
   constructor(public service:LoginService,private route: Router) { 
   this.email=""
   this.constrasena=""
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit {
     
     console.log("entro")
     this.service.login(this.email,this.constrasena).subscribe((resp)=>{
-      console.log("entro rest")
-      localStorage.setItem('id',resp.toString())
+      
+      sessionStorage.setItem('id',resp.toString())
+      
       this.route.navigate(['home']);
 
     },

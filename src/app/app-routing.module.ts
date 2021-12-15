@@ -1,3 +1,4 @@
+import { PerfilComponent } from './perfil/perfil.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -8,7 +9,9 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent,children:[
+    { path: 'perfil', component: PerfilComponent }, 
+  ] },
 ];
 
 @NgModule({
