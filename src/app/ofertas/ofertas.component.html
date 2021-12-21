@@ -1,0 +1,36 @@
+<div fxLayout="row" fxLayoutAlign="end center" style="margin-top: 10px; margin-right:20px;">
+    <button mat-raised-button color="primary" (click)="openDialog()">Crear Oferta</button>
+</div>
+
+<md-content class="main-div" *ngFor="let oferta of ofertasList">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{ oferta.nombre }}</mat-card-title>
+    </mat-card-header>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+        <span><strong>Remuneracion: </strong> {{oferta.remuneracion}} </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> <strong>Feha inicio: </strong> {{formatfecha(oferta.fecha_inicio)}}</span> <span><strong>Fecha fin: </strong> {{formatfecha(oferta.fecha_fin)}} </span> <span><strong>Horario: </strong> {{oferta.horario}}</span> 
+    </div>
+    <mat-card-body>
+      <strong>Descripcion</strong>
+      <p>
+        {{ oferta.descripcion }}
+      </p>
+
+      <div class="scrollmenu">
+        <mat-card
+          [style.border]="'primary'"
+          class="cardciclo"
+          *ngFor="let item of oferta.ciclo"
+        >
+          <mat-card-header>
+            <mat-card-title> {{ item.nombre }} </mat-card-title>
+          </mat-card-header>
+          <mat-card-body>
+            <p><strong>Familia:</strong> {{ item.familia.nombre }}</p>
+            <p><strong>Tipo ciclo:</strong> {{ item.tipoCiclo.nombre }}</p>
+          </mat-card-body>
+        </mat-card>
+      </div>
+    </mat-card-body>
+  </mat-card>
+</md-content>

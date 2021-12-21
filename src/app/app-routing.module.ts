@@ -1,3 +1,5 @@
+import { OfertasComponent } from './ofertas/ofertas.component';
+import { LandingComponent } from './landing/landing.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,7 +12,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent,children:[
+    { path: '', component: LandingComponent }, 
     { path: 'perfil', component: PerfilComponent }, 
+    { path: 'ofertas', component: OfertasComponent }, 
   ] },
 ];
 

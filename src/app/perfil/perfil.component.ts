@@ -14,14 +14,14 @@ export class PerfilComponent implements OnInit {
   provincia:String|undefined="";
   constructor(private empresa:EmpresaService) {
 
-    this.obtenerPerfil();
   }
   
   ngOnInit(): void {
+    this.obtenerPerfil();
   }
   
   obtenerPerfil(){
-    let c:emprsesa;
+ 
     this.empresa.getEmpresaid(sessionStorage.getItem('id')).subscribe((data)=>{
       this.emp=data
       this.provincia=data.provincias?.provincias

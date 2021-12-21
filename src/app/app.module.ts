@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -18,7 +18,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,6 +45,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './perfil/perfil.component';
+import { LandingComponent } from './landing/landing.component';
+import { OfertasComponent } from './ofertas/ofertas.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CrearofertaComponent } from './crearoferta/crearoferta.component';
 
 
 const materialModules = [
@@ -81,16 +86,29 @@ const materialModules = [
   MatDatepickerModule,
   MatTooltipModule,
   FlexLayoutModule,
+  MatDialogModule,
+  MatStepperModule,
+  
   
 ];
 
 @NgModule({
+  exports:[
+    MatDatepickerModule, 
+               MatNativeDateModule
+  ],
+  entryComponents:[
+    CrearofertaComponent
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
     PerfilComponent,
+    LandingComponent,
+    OfertasComponent,
+    CrearofertaComponent,
 
   ],
   imports: [
@@ -99,7 +117,11 @@ const materialModules = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     materialModules,
-    HttpClientModule 
+    HttpClientModule ,
+    MatDatepickerModule,        
+
+    FormsModule,
+    ReactiveFormsModule
     
   ],
   providers: [],
