@@ -8,29 +8,55 @@
       <mat-card-title>{{ oferta.nombre }}</mat-card-title>
     </mat-card-header>
     <div fxLayout="row" fxLayoutAlign="space-around center">
-        <span><strong>Remuneracion: </strong> {{oferta.remuneracion}} </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> <strong>Feha inicio: </strong> {{formatfecha(oferta.fecha_inicio)}}</span> <span><strong>Fecha fin: </strong> {{formatfecha(oferta.fecha_fin)}} </span> <span><strong>Horario: </strong> {{oferta.horario}}</span> 
+        <span><strong>Remuneracion: </strong> {{oferta.remuneracion}}</span><span>  <strong>Feha inicio: </strong> {{formatfecha(oferta.fecha_inicio)}}</span> <span><strong>Fecha fin: </strong> {{formatfecha(oferta.fecha_fin)}} </span> <span><strong>Horario: </strong> {{oferta.horario}}</span> 
     </div>
     <mat-card-body>
       <strong>Descripcion</strong>
       <p>
         {{ oferta.descripcion }}
       </p>
+      <mat-tab-group>
+        <mat-tab label="Ciclos">
 
-      <div class="scrollmenu">
-        <mat-card
+          <div class="scrollmenu">
+            <mat-card
+            [style.border]="'primary'"
+            class="cardciclo"
+            *ngFor="let item of oferta.ciclo"
+            >
+            <mat-card-header>
+              <mat-card-title> {{ item.nombre }} </mat-card-title>
+            </mat-card-header>
+            <mat-card-body>
+              <p><strong>Familia:</strong> {{ item.familia.nombre }}</p>
+              <p><strong>Tipo ciclo:</strong> {{ item.tipoCiclo.nombre }}</p>
+            </mat-card-body>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Inscripciones">
+        <div class="scrollmenu">
+          <mat-card style="min-width: 30%;"
           [style.border]="'primary'"
           class="cardciclo"
-          *ngFor="let item of oferta.ciclo"
-        >
+          *ngFor="let item of getInscipcionesOfertas(oferta.id)"
+          >
           <mat-card-header>
-            <mat-card-title> {{ item.nombre }} </mat-card-title>
+            <mat-card-title> {{ item.alumno.nombre }} {{ item.alumno.apellidos }} </mat-card-title>
           </mat-card-header>
           <mat-card-body>
-            <p><strong>Familia:</strong> {{ item.familia.nombre }}</p>
-            <p><strong>Tipo ciclo:</strong> {{ item.tipoCiclo.nombre }}</p>
+            <p><strong>Email:</strong> {{ item.alumno.email }}</p>
+            <p><strong>Ciclo:</strong> {{ item.alumno.ciclo.nombre }}</p>
+            <p><strong>Fecha Nacimiento:</strong> {{ formatfecha(item.alumno.fechanacimiento) }}</p>
+            <p><strong>Localidad:</strong> {{ item.alumno.localidad }}</p>
+            <p><strong>Provincia:</strong> {{ item.alumno.provincia.provincias }}</p>
+            <p><strong>Calificacion Media:</strong> {{ item.alumno.calificacion_media }}</p>
+
           </mat-card-body>
         </mat-card>
       </div>
+      </mat-tab>
+    </mat-tab-group>
     </mat-card-body>
   </mat-card>
 </md-content>

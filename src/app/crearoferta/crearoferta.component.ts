@@ -90,7 +90,7 @@ this.fruits.forEach(elemento=>{
 })
 
 
-console.log()
+
   let oferta:ofertacreate={
     nombre: this.nombre,
     descripcion: this.descripcion,
