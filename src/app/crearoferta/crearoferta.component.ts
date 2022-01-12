@@ -46,8 +46,8 @@ export class CrearofertaComponent implements OnInit {
 
   separatorKeysCodes = [ENTER, COMMA];
   range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
+    start: new FormControl('', Validators.required),
+    end: new FormControl('', Validators.required),
   });
   todayDate:Date = new Date();
   
@@ -71,7 +71,9 @@ export class CrearofertaComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
 
-      horarioCtrl:['', Validators.required]
+      horarioCtrl:['', Validators.required],
+
+
     });
     this.thirdFormGroup = this._formBuilder.group({
       courseIds:this.fruitCtrl
@@ -108,7 +110,7 @@ this.fruits.forEach(elemento=>{
 }
 
 
-  fruitCtrl = new FormControl();
+  fruitCtrl = new FormControl(['',Validators.required]);
   filteredFruits: Observable<string[]>;
   fruits: string[] = [];
   allFruits: string[] = [];

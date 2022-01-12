@@ -2,7 +2,7 @@ import { RegisterService } from './../_servicies/register.service';
 import { provincia } from './../_models/provincias';
 import { emprsesa } from './../_models/empresa';
 import { Component, OnInit } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
   FormControl,
@@ -13,6 +13,7 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { ProvinciaService } from '../_servicies/provincias.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -35,7 +36,17 @@ export class RegisterComponent implements OnInit {
   passwordConfirm = '';
   localidad = '';
   direccion = '';
-  constructor(private route: Router,public service:ProvinciaService, public serviceRegister:RegisterService) {
+  registerForm= this._formBuilder.group({
+    nombreFormControl:['', [Validators.required]],
+    direccionFormControl:['', [Validators.required]],
+    localidadFormControl:['', [Validators.required]],
+    provinciaFormControl:['', [Validators.required]],
+    passwordFormControl:['', [Validators.required]],
+    confirmpasswordFormControl:['', [Validators.required]],
+
+  })
+
+  constructor(private _formBuilder: FormBuilder,private route: Router,public service:ProvinciaService, public serviceRegister:RegisterService,private _snackBar: MatSnackBar) {
     this.ArrayProvincias()
     
 
@@ -59,37 +70,40 @@ export class RegisterComponent implements OnInit {
   }
 
   toLogin(){
-    // this.route.navigate.
+    this.route.navigate(['login'])
   }
 
   submit() {
+    if(this.registerForm.valid){
     if (this.password == this.passwordConfirm) {
-      let idprovincia:number=0;
-      
-      // this.provincias.forEach((prov: provincia) => {
-      //   if(prov.provincias==this.provinciaselect){
-      //     idprovincia=prov.id
-      //   }
-      // });
-      console.log(this.provinciaselect)
-      let empresa:emprsesa={
-        email: this.email,
-        nombre: this.nombreEmpresa,
-        contrasena: this.password,
-        localidad: this.localidad,
-        direccion: this.direccion,
-        idprovincias: this.provinciaselect
-      };
-      
-      this.serviceRegister.register(empresa).subscribe(
-        resp=>{
-          this.toLogin();
-        },
-        error=>{
-          
+        console.log(this.provinciaselect)
+        let empresa:emprsesa={
+          email: this.email,
+          nombre: this.nombreEmpresa,
+          contrasena: this.password,
+          localidad: this.localidad,
+          direccion: this.direccion,
+          idprovincias: this.provinciaselect
+        };
+        
+        this.serviceRegister.register(empresa).subscribe(
+          resp=>{
+            this.toLogin();
+          },
+          error=>{
+            
+          }
+          )
+        }else{
+          this._snackBar.open("Contraseña no concide", "cerrar",{
+            duration: 3000,
+          })
         }
-      )
-    }
+      }else{
+        this._snackBar.open("Rellena todos los campos", "cerrar",{
+          duration: 3000,
+        })
+      }
 
 
   }

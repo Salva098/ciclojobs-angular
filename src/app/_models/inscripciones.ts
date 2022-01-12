@@ -8,5 +8,5 @@ export interface Inscripciones{
     ofertaId:number,
     oferta:ofertas,
     fechaInscripcion:Date,
-    estadoInscripción:string
+    estadoInscripcion:string
 }

@@ -50,7 +50,17 @@
             <p><strong>Fecha Nacimiento:</strong> {{ formatfecha(item.alumno.fechanacimiento) }}</p>
             <p><strong>Localidad:</strong> {{ item.alumno.localidad }}</p>
             <p><strong>Provincia:</strong> {{ item.alumno.provincia.provincias }}</p>
-            <p><strong>Calificacion Media:</strong> {{ item.alumno.calificacion_media }}</p>
+            <p><strong>Calificación Media:</strong> {{ item.alumno.calificacion_media }}</p>
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>Estado de la inscripción</mat-label>
+                <mat-select (selectionChange)="cambiarestado($event,item)" [value]="item.estadoInscripcion">
+                  <mat-option value="pendiente">pendiente</mat-option>
+                  <mat-option value="seleccionado">seleccionado</mat-option>
+                  <mat-option value="no seleccionado">no seleccionado</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
 
           </mat-card-body>
         </mat-card>

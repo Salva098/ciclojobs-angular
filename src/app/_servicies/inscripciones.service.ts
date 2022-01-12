@@ -16,4 +16,9 @@ export class InscripcionService{
         {headers :headers}
         )
     }
+    updateIncripcion(inscripcion:Inscripciones){
+        const headers = new HttpHeaders({"accept":"text/plain","Content-Type":"application/json"})
+        return this.http.put(this.urlapi+"Inscripciones",inscripcion,{headers :headers},)
+        
+    }
 }

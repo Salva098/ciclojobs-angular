@@ -6,14 +6,14 @@
         <mat-card-title>Log in</mat-card-title>
       </mat-card-header>
   
-      <form class="example-form">
+      <form [formGroup]="form" class="example-form">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl">
+            <input matInput placeholder="Email" [(ngModel)]="email" formControlName="emailFormControl">
           </mat-form-field>
   
           <mat-form-field class="example-full-width" >
-            <input matInput [type]="hide ? 'text': 'password'" [(ngModel)]="constrasena" placeholder="Password" [formControl]="inputFormControl">
+            <input matInput [type]="hide ? 'text': 'password'" [(ngModel)]="constrasena" placeholder="Password" formControlName="inputFormControl">
             <mat-icon matSuffix (click)="hide=!hide" >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <div *ngIf="error">

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Inscripciones } from '../_models/inscripciones';
 import { Alumnos } from '../_models/alumno';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -17,13 +18,14 @@ import { Alumnos } from '../_models/alumno';
 export class OfertasComponent implements OnInit {
 ofertasList:ofertas[]=[]
 InscripcionesList:Inscripciones[]=[]
+selected=""
 
 formatfecha(fecha:String):string{   
 
 return fecha.split('T')[0]; 
 }
 
-  constructor(private empre:EmpresaService, private dialog: MatDialog,private inscripciones:InscripcionService) { }
+  constructor(private empre:EmpresaService, private dialog: MatDialog,private inscripciones:InscripcionService, private _snackBar: MatSnackBar) { }
 
 
   openDialog() {
@@ -31,7 +33,7 @@ return fecha.split('T')[0];
     const a =this.dialog.open(CrearofertaComponent,{
       width: '70%',
     });
-    a.afterClosed().subscribe(datos=>{
+    a.afterClosed().subscribe(_datos=>{
       this.getOfertasList()
       this.getInscripcionesList()
     })
@@ -53,7 +55,23 @@ return fecha.split('T')[0];
     })
   }
   getInscipcionesOfertas(idoferta:number|undefined):Array<Inscripciones>{
+
     return this.InscripcionesList.filter(inscrioncion=>inscrioncion.ofertaId==idoferta);
+  }
+  cambiarestado(_event: any,_inscripcion:Inscripciones){
+    _inscripcion.estadoInscripcion=_event.value
+    this.inscripciones.updateIncripcion(_inscripcion).subscribe((data)=>{
+      this._snackBar.open("Inscipcion cambiado correctamente","cerrar",
+      {
+      duration: 3000,
+    })
+    },error=>{
+      this._snackBar.open("ERROR: Inscipcion no cambiada","cerrar",
+      {
+      duration: 3000,
+    })
+    });
+    
   }
 
 }
