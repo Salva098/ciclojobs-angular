@@ -14,8 +14,7 @@ export class RegisterService {
   register(empresa:emprsesa){
     console.log(empresa)
     const headers = new HttpHeaders({"accept":"text/plain","Content-Type":"application/json"})
-    return this.http.post(this.urlapi+"Empresa",empresa
-    ,
+    return this.http.post(this.urlapi+"Empresa",empresa,
     {headers :headers}
     )
   }

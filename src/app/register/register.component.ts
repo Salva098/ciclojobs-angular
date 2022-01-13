@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
   direccion = '';
   registerForm= this._formBuilder.group({
     nombreFormControl:['', [Validators.required]],
+    emailFormControl:['', [Validators.required]],
     direccionFormControl:['', [Validators.required]],
     localidadFormControl:['', [Validators.required]],
     provinciaFormControl:['', [Validators.required]],
@@ -76,6 +77,7 @@ export class RegisterComponent implements OnInit {
   submit() {
     if(this.registerForm.valid){
     if (this.password == this.passwordConfirm) {
+
         console.log(this.provinciaselect)
         let empresa:emprsesa={
           email: this.email,
