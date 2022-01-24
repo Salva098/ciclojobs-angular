@@ -1,6 +1,6 @@
 import { provincia } from "./provincias";
 
-export interface emprsesa{
+export interface empresa{
       id?:number;
       email:string;
       nombre:string;

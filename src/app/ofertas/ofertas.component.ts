@@ -44,13 +44,13 @@ return fecha.split('T')[0];
     this.getInscripcionesList()
   } 
   getOfertasList(){
-    this.empre.getOfertasEmpresa(sessionStorage.getItem('id')).subscribe((data)=>{
+    this.empre.getOfertasEmpresa().subscribe((data)=>{
       this.ofertasList=data
       console.log(this.ofertasList)
     })
   }
   getInscripcionesList(){
-    this.inscripciones.getInscripciones(sessionStorage.getItem('id')).subscribe((data)=>{
+    this.inscripciones.getInscripciones().subscribe((data)=>{
       this.InscripcionesList=data
     })
   }

@@ -33,12 +33,10 @@ export class LoginComponent implements OnInit {
     if(this.form.valid){
 
       console.log("entro")
-      this.service.login(this.email,this.constrasena).subscribe((resp)=>{
-        
-        sessionStorage.setItem('id',resp.toString())
-        
-        this.route.navigate(['home']);
-        
+      this.service.login(this.email.toString(),this.constrasena.toString()).subscribe((resp)=>{
+        sessionStorage.setItem('token',resp.headers.get('token')!)
+
+        this.route.navigate(["/home"]);
       },
       error=>{
         this._snackBar.open("Error al login", "cerrar",{

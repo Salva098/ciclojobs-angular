@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -11,12 +11,13 @@ export class LoginService {
 
   login(email:string,contrasena:string){
     const headers = new HttpHeaders({"accept":"text/plain","Content-Type":"application/json"})
-    return this.http.post(this.urlapi+"Empresa/Login",
+   return this.http.post<any>(this.urlapi+"Empresa/Login",
     {
       "email": email,
       "contrasena": contrasena
     },
-    {headers :headers}
+    {headers :headers,
+      observe: "response"}
     )
   }
 }

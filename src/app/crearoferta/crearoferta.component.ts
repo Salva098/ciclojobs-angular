@@ -99,7 +99,6 @@ this.fruits.forEach(elemento=>{
     remuneracion: this.remuneracion,
     fecha_inicio: JSON.stringify(new Date(this.range.value["start"])).replace("\"","").replace("\"",""),
     fecha_fin:  JSON.stringify(new Date(this.range.value["end"])).replace("\"","").replace("\"",""),
-    idempresas: parseInt(sessionStorage.getItem('id')!),
     horario: this.horario,
     ciclo:ids
   }   

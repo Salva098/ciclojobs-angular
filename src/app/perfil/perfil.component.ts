@@ -1,4 +1,4 @@
-import { emprsesa } from './../_models/empresa';
+import { empresa } from './../_models/empresa';
 import { provincia } from '../_models/provincias';
 import { EmpresaService } from './../_servicies/empresa.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
   
-  emp!:emprsesa;
+  emp!:empresa;
   provincia:String|undefined="";
   constructor(private empresa:EmpresaService) {
 
@@ -22,7 +22,7 @@ export class PerfilComponent implements OnInit {
   
   obtenerPerfil(){
  
-    this.empresa.getEmpresaid(sessionStorage.getItem('id')).subscribe((data)=>{
+    this.empresa.getEmpresaid().subscribe((data)=>{ 
       this.emp=data
       this.provincia=data.provincias?.provincias
       console.log(data)

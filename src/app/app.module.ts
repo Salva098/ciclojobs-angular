@@ -1,3 +1,5 @@
+import { InscripcionService } from './_servicies/inscripciones.service';
+import { EmpresaService } from './_servicies/empresa.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -43,13 +45,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PerfilComponent } from './perfil/perfil.component';
 import { LandingComponent } from './landing/landing.component';
 import { OfertasComponent } from './ofertas/ofertas.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CrearofertaComponent } from './crearoferta/crearoferta.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const materialModules = [
@@ -109,6 +112,7 @@ const materialModules = [
     LandingComponent,
     OfertasComponent,
     CrearofertaComponent,
+    ChangePasswordComponent,
 
   ],
   imports: [
@@ -119,12 +123,21 @@ const materialModules = [
     materialModules,
     HttpClientModule ,
     MatDatepickerModule,        
-
     FormsModule,
     ReactiveFormsModule
     
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: EmpresaService,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InscripcionService,
+    multi: true
+  }
+],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

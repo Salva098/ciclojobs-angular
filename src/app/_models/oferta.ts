@@ -1,5 +1,5 @@
 import { ciclo } from './ciclo';
-import { emprsesa } from './empresa';
+import { empresa } from './empresa';
 export interface ofertas{
     id?:number;
     nombre:String;
@@ -9,7 +9,7 @@ export interface ofertas{
     fecha_fin:String;
     horario:String;
     idempresa:number;
-    empresa?:emprsesa;
+    empresa?:empresa;
     ciclo?:Array<ciclo>
 
   }
@@ -21,7 +21,7 @@ export interface ofertas{
     fecha_inicio:String;
     fecha_fin:String;
     horario:String;
-    idempresas:number;
-    empresa?:emprsesa;
+    idempresas?:number;
+    empresa?:empresa;
     ciclo?:Array<any>
   }
