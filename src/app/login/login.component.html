@@ -20,9 +20,19 @@
           <mat-error>Error al login</mat-error>
         </div>
         </mat-card-content>
-        <a mat-button color="primary" routerLink="../register" routerLinkActive="active" class="btn-block">Not registered?</a>
-        <a mat-button color="primary" routerLink="../changepassword" routerLinkActive="active" class="btn-block">forgot password?</a>
-        <a mat-flat-button color="primary" (click)="login()" routerLinkActive="active" class="btn-block">Log in</a>
+        <div  [hidden]="code">
+
+          <a mat-button color="primary" routerLink="../register" routerLinkActive="active" class="btn-block">Not registered?</a>
+          <a mat-button color="primary" routerLink="../changepassword" routerLinkActive="active" class="btn-block">forgot password?</a>
+          <a mat-flat-button color="primary" (click)="login()" routerLinkActive="active" class="btn-block">Log in</a>
+        </div>
+      </form>
+      <form [hidden]="!code" [formGroup]="formcode">
+          <mat-form-field [hidden]="" class="example-full-width" >
+            <input matInput [(ngModel)]="codetxt" placeholder="Codigo verificacion" formControlName="codeCtrl">
+          </mat-form-field>
+          <a mat-flat-button color="primary" (click)="verificarAccount()" routerLinkActive="active" class="btn-block">Verificar Codigo</a>
+
       </form>
     </mat-card>
   

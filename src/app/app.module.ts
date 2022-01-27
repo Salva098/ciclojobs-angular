@@ -53,6 +53,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CrearofertaComponent } from './crearoferta/crearoferta.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { authService } from './_servicies/auth.service';
+import { EnviarCorreoDialogComponent } from './enviar-correo-dialog/enviar-correo-dialog.component';
+import { EditarPerfilDialogComponent } from './editar-perfil-dialog/editar-perfil-dialog.component';
 
 
 const materialModules = [
@@ -113,6 +116,8 @@ const materialModules = [
     OfertasComponent,
     CrearofertaComponent,
     ChangePasswordComponent,
+    EnviarCorreoDialogComponent,
+    EditarPerfilDialogComponent,
 
   ],
   imports: [
@@ -129,14 +134,10 @@ const materialModules = [
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: EmpresaService,
+    useClass: authService,
     multi: true
   },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: InscripcionService,
-    multi: true
-  }
+  
 ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

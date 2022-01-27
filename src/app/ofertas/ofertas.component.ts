@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Inscripciones } from '../_models/inscripciones';
 import { Alumnos } from '../_models/alumno';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EnviarCorreoDialogComponent } from '../enviar-correo-dialog/enviar-correo-dialog.component';
 
 
 @Component({
@@ -26,6 +27,18 @@ return fecha.split('T')[0];
 }
 
   constructor(private empre:EmpresaService, private dialog: MatDialog,private inscripciones:InscripcionService, private _snackBar: MatSnackBar) { }
+
+  enviarmail(emailalumno:string,nombreoferta:String){
+    this.dialog.open(EnviarCorreoDialogComponent,{
+      data:{
+        "emailalumno":emailalumno,
+        "nombreoferta":nombreoferta
+      }
+    })
+  }
+
+
+
 
 
   openDialog() {

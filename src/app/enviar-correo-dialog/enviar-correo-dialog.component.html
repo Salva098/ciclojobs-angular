@@ -1,0 +1,20 @@
+<form [formGroup]="formGroup">
+
+    
+    <h1>Mensaje para el alumno</h1>
+    <div fxLayout="column">
+        <div fxLayout="row">
+            <strong >Email del Alumno: &nbsp;</strong> <label>{{data.emailalumno}}</label>
+            <hr>
+        </div>
+        <div fxLayout="row" style="padding-bottom: 30px;">
+            <mat-form-field fxFlex="">
+
+                <textarea  matInput formControlName="mensajectrl" required [(ngModel)]="mensaje" fxFlex=""></textarea>
+            </mat-form-field>
+            
+        </div>
+        <a mat-flat-button color="primary" (click)="enviarcorreo()" routerLinkActive="active" class="btn-block">Enviar Correo</a>
+
+    </div>
+</form>

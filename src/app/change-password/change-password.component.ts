@@ -48,7 +48,7 @@ export class ChangePasswordComponent implements OnInit {
 
   codeVerify(stepper: MatStepper) {
     if (this.secondFormGroup.valid) {
-      this.service.checkcode(this.email, this.code).subscribe(
+      this.service.verificarcode(this.email, this.code).subscribe(
         (data) => {
           console.log('verificado');
           this.step=false;

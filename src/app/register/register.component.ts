@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     if (this.CodeFormControl.valid) {
-      this.serviceEmpresa.checkcode(this.email, this.codeverify).subscribe(
+      this.serviceEmpresa.verificarcode(this.email, this.codeverify).subscribe(
         (data) => {
           this.route.navigate(['login']);
          

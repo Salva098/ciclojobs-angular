@@ -42,7 +42,13 @@
           *ngFor="let item of getInscipcionesOfertas(oferta.id)"
           >
           <mat-card-header>
-            <mat-card-title> {{ item.alumno.nombre }} {{ item.alumno.apellidos }} </mat-card-title>
+        
+              <mat-card-title> {{ item.alumno.nombre }} {{ item.alumno.apellidos }} </mat-card-title>
+              <div fxFlex></div>
+              <button mat-icon-button (click)="enviarmail(item.alumno.email,oferta.nombre)">
+
+                <mat-icon> email</mat-icon>
+              </button>
           </mat-card-header>
           <mat-card-body>
             <p><strong>Email:</strong> {{ item.alumno.email }}</p>

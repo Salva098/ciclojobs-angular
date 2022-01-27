@@ -9,37 +9,10 @@ import { Router } from '@angular/router';
 @Injectable({
     providedIn: 'root'
   })
-export class InscripcionService implements HttpInterceptor{
+export class InscripcionService{
     urlapi="http://localhost:5000/api/"
 
-    constructor(private http : HttpClient, private router:Router) {}
-    
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  
-        const token: string = sessionStorage.getItem('token')!;
-        let request = req;
-    
-        if (token) {
-          request = req.clone({
-            setHeaders: {
-                token: "Bearer "+token
-            }
-          });
-        }
-    
-        return next.handle(request).pipe(
-          catchError((err: HttpErrorResponse) => {
-    
-            if (err.status === 401) {
-              this.router.navigateByUrl('/login');
-            }
-    
-            return throwError( err );
-    
-          })
-        );
-      }
-      
+    constructor(private http : HttpClient) {}
 
     getInscripciones():Observable<Array<Inscripciones>>{
         const headers = new HttpHeaders({"accept":"text/plain","Content-Type":"application/json"})
