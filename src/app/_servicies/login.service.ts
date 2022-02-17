@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  urlapi="http://localhost:5000/api/"
+  urlapi="http://51.254.98.153:5000/api/"
   constructor(private http : HttpClient) {}
 
   login(email:string,contrasena:string){
