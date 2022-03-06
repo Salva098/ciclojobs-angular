@@ -120,9 +120,14 @@ export class RegisterComponent implements OnInit {
     if (this.CodeFormControl.valid) {
       this.serviceEmpresa.verificarcode(this.email, this.codeverify).subscribe(
         (data) => {
-          this.serviceStripe.generarUrlPago(this.empresa).subscribe((url)=>{
-            window.location.href=url
-          })       
+          if(this.registerForm.value.premium){
+
+            this.serviceStripe.generarUrlPago(this.empresa).subscribe((url)=>{
+              window.location.href=url
+            })       
+          }else{
+            this.route.navigate(['login'])
+          }
          
         },
         (error) => {
