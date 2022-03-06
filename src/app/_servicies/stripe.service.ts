@@ -6,15 +6,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class StripeService {
 
-  urlapi="http://51.254.98.153/api/"
+  // urlapi="http://51.254.98.153/api/"
+  urlapi="http://localhost:5000/api/"
   constructor(private http : HttpClient) {}
 
-  register(empresa:empresa):Observable<empresa>{
-    const headers = new HttpHeaders({"accept":"text/plain","Content-Type":"application/json"})
-    return this.http.post<empresa>(this.urlapi+"Empresa",empresa,
-    {headers :headers}
+  generarUrlPago(empresa:empresa){
+    return this.http.post(this.urlapi+"Contract",empresa,
+    {responseType: 'text'}
     )
   }
 }

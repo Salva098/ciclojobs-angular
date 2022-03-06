@@ -4,35 +4,62 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="registerForm" class="example-form">
-      
+    <form
+      [formGroup]="registerForm"
+      style="padding-top: 10px"
+      class="example-form"
+    >
       <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Nombre Empresa"
+            [(ngModel)]="nombreEmpresa"
+            formControlName="nombreFormControl"
+          />
+        </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Nombre Empresa" [(ngModel)]="nombreEmpresa" formControlName="nombreFormControl" />
+          <input
+            matInput
+            placeholder="Email"
+            [(ngModel)]="email"
+            formControlName="emailFormControl"
+          />
         </mat-form-field>
-        
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" [(ngModel)]="email" formControlName="emailFormControl" />
-        </mat-form-field>
-        
-        
-        <mat-form-field class="example-full-width" >
-            <input matInput [(ngModel)]="password" [type]="hide ? 'text': 'password'" placeholder="Password" formControlName="passwordFormControl">
-            <mat-icon matSuffix (click)="hide=!hide" >{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" >
-          <input matInput [(ngModel)]="passwordConfirm" [type]="hideConfirm ? 'text': 'password'" placeholder="Confirm Password" formControlName="confirmpasswordFormControl">
-          <mat-icon matSuffix (click)="hideConfirm=!hideConfirm" >{{hideConfirm ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
 
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            [(ngModel)]="password"
+            [type]="hide ? 'text' : 'password'"
+            placeholder="Password"
+            formControlName="passwordFormControl"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? "visibility" : "visibility_off"
+          }}</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            [(ngModel)]="passwordConfirm"
+            [type]="hideConfirm ? 'text' : 'password'"
+            placeholder="Confirm Password"
+            formControlName="confirmpasswordFormControl"
+          />
+          <mat-icon matSuffix (click)="hideConfirm = !hideConfirm">{{
+            hideConfirm ? "visibility" : "visibility_off"
+          }}</mat-icon>
+        </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Provincia</mat-label>
-          <mat-select formControlName="provinciaFormControl" 
-          (selectionChange)="changeselected($event.value)"
+          <mat-select
+            formControlName="provinciaFormControl"
+            (selectionChange)="changeselected($event.value)"
           >
-            <mat-option 
+            <mat-option
               *ngFor="let provincias of provincias"
               [value]="provincias"
             >
@@ -42,25 +69,64 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Localidad" [(ngModel)]="localidad" formControlName="localidadFormControl"/>
+          <input
+            matInput
+            placeholder="Localidad"
+            [(ngModel)]="localidad"
+            formControlName="localidadFormControl"
+          />
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Direccion" [(ngModel)]="direccion" formControlName="direccionFormControl"/>
+          <input
+            matInput
+            placeholder="Direccion"
+            [(ngModel)]="direccion"
+            formControlName="direccionFormControl"
+          />
         </mat-form-field>
+        <section class="example-section">
+          <mat-label>
+             Magnifico Plan Premium de membresia por 9,99€/mes para enviar mensajes a cualquier alumno aunque no este inscrito en la oferta
+          </mat-label>
+          <mat-checkbox
+          style="word-wrap: break-word"
+          class="example-margin"
+          formControlName="premium"
+          >Me quiero Subscribir</mat-checkbox
+          >
+        </section>
+
       </mat-card-content>
+
       <div *ngIf="code">
         <mat-form-field>
-          <input matInput [(ngModel)]="codeverify" type="number" placeholder="Codigo verificacion" [formControl]="CodeFormControl">
-          
+          <input
+            matInput
+            [(ngModel)]="codeverify"
+            type="number"
+            placeholder="Codigo verificacion"
+            [formControl]="CodeFormControl"
+          />
         </mat-form-field>
         <a mat-flat-button color="primary" (click)="submit()" class="btn-block">
           Verificar
         </a>
       </div>
       <div *ngIf="!code">
-
-        <a mat-button color="primary" routerLink="../login" routerLinkActive="active" class="btn-block">do you want to log in?</a>
-        <a mat-flat-button color="primary" (click)="generatecode()" class="btn-block">
+        <a
+          mat-button
+          color="primary"
+          routerLink="../login"
+          routerLinkActive="active"
+          class="btn-block"
+          >do you want to log in?</a
+        >
+        <a
+          mat-flat-button
+          color="primary"
+          (click)="generatecode()"
+          class="btn-block"
+        >
           Register
         </a>
       </div>

@@ -1,3 +1,4 @@
+import { StripeService } from './../_servicies/stripe.service';
 import { RegisterService } from './../_servicies/register.service';
 import { provincia } from './../_models/provincias';
 import { empresa } from './../_models/empresa';
@@ -17,6 +18,8 @@ import { EmpresaService } from '../_servicies/empresa.service';
 export class RegisterComponent implements OnInit {
   ProvinciasString: any = [];
   provincias: any = [];
+  premium=true;
+  
   inputFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -25,6 +28,13 @@ export class RegisterComponent implements OnInit {
   code = false;
   hideConfirm = false;
   hide = false;
+  empresa:empresa={
+    email: '',
+    nombre: '',
+    idprovincias: 0,
+    localidad: '',
+    direccion: ''
+  };
   nombreEmpresa = '';
   email = '';
   provinciaselect = 0;
@@ -41,6 +51,7 @@ export class RegisterComponent implements OnInit {
     provinciaFormControl: ['', [Validators.required]],
     passwordFormControl: ['', [Validators.required]],
     confirmpasswordFormControl: ['', [Validators.required]],
+    premium: [''],
   });
   CodeFormControl = new FormControl(['', [Validators.required]]);
   constructor(
@@ -48,6 +59,7 @@ export class RegisterComponent implements OnInit {
     private route: Router,
     public service: ProvinciaService,
     public serviceRegister: RegisterService,
+    public serviceStripe: StripeService,
     private _snackBar: MatSnackBar,
     private serviceEmpresa: EmpresaService
   ) {
@@ -68,6 +80,8 @@ export class RegisterComponent implements OnInit {
   }
 
   generatecode() {
+    
+    console.log(this.registerForm.value.premium)
     if (this.registerForm.valid) {
       if (this.password == this.passwordConfirm) {
         let empresa: empresa = {
@@ -78,12 +92,17 @@ export class RegisterComponent implements OnInit {
           direccion: this.direccion,
           idprovincias: this.provinciaselect,
         };
+        this.serviceRegister.register(empresa).subscribe((resp:empresa) => {
+          this.empresa=resp;
+          console.log(this.empresa)
+            this.serviceEmpresa.sendemail(this.email).subscribe((data) => {
+              this.code = true;
+            });
 
-        this.serviceRegister.register(empresa).subscribe((resp) => {
-          this.serviceEmpresa.sendemail(this.email).subscribe((data) => {
-            this.code = true;
-          });
-          
+
+
+
+                    
         });
       } else {
         this._snackBar.open('Contraseña no concide', 'cerrar', {
@@ -101,7 +120,9 @@ export class RegisterComponent implements OnInit {
     if (this.CodeFormControl.valid) {
       this.serviceEmpresa.verificarcode(this.email, this.codeverify).subscribe(
         (data) => {
-          this.route.navigate(['login']);
+          this.serviceStripe.generarUrlPago(this.empresa).subscribe((url)=>{
+            window.location.href=url
+          })       
          
         },
         (error) => {
