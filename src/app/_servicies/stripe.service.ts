@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class StripeService {
 
   // urlapi="http://51.254.98.153/api/"
-  urlapi="http://localhost:5000/api/"
+  urlapi="http://51.254.98.153/api/"
   constructor(private http : HttpClient) {}
 
   generarUrlPago(empresa:empresa){
