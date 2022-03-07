@@ -13,13 +13,13 @@ export class StripeService {
   constructor(private http : HttpClient) {}
 
   existPremium(){
-    return this.http.get(this.urlapi+"Stripe/Exist",
+    return this.http.get(this.urlapi+"Contrato/Exist",
     {responseType: 'text'}
     )
   }
 
   generarUrlPago(empresa:empresa){
-    return this.http.post(this.urlapi+"Stripe",empresa,
+    return this.http.post(this.urlapi+"Contrato",empresa,
     {responseType: 'text'}
     )
   }
