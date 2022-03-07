@@ -1,5 +1,7 @@
+import { PremiumDialogComponent } from './../premium-dialog/premium-dialog.component';
 import { StripeService } from './../_servicies/stripe.service';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public serviceStripe: StripeService,) { }
+  constructor(public serviceStripe: StripeService, private dialog: MatDialog) { }
   premium=false;
   ngOnInit(): void {
 
@@ -21,6 +23,11 @@ export class HomeComponent implements OnInit {
   cerrarsesion(){
     sessionStorage.setItem("token","");
     window.location.reload()
+  }
+  crearSubsPago(){
+    this.dialog.open(PremiumDialogComponent,{
+      width: '50%',
+    })
   }
 
 }

@@ -4,7 +4,7 @@
   </span>
   <span> CiclosJobs </span>
   <span fxFlex></span>
-  <span fxFlex="10" *ngIf="!premium" >
+  <span fxFlex="10" (click)="crearSubsPago()" *ngIf="!premium" >
     <img src="assets\premium.gif" />
   </span>
 </mat-toolbar>
@@ -21,7 +21,7 @@
         Perfil
       </a>
 
-      <a *ngIf="premium" mat-list-item [routerLink]="['./perfil']" (click)="cajon.toggle()">
+      <a *ngIf="premium" mat-list-item (click)="cajon.toggle()">
         <mat-icon style="color: green">attach_money</mat-icon>
         Premium
       </a>
