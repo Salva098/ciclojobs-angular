@@ -1,34 +1,39 @@
+<mat-toolbar color="primary" fxLayout="row">
+  <span fxFlex>
+    <mat-icon (click)="cajon.toggle()">menu</mat-icon>
+  </span>
+  <span> CiclosJobs </span>
+  <span fxFlex></span>
+  <span fxFlex="10" *ngIf="!premium" >
+    <img src="assets\premium.gif" />
+  </span>
+</mat-toolbar>
 
-  <mat-toolbar color="primary"  fxLayout="row">
-    <span>
-      <mat-icon (click)="cajon.toggle()">menu</mat-icon>
-    </span>
-    <span> CiclosJobs </span>
-  </mat-toolbar>
-  
-  
-  
-  
-  <mat-sidenav-container fxFlexFill >
-    <mat-sidenav fxLayout="column"  style="min-width: 300px;" #cajon mode="side">
-      <mat-nav-list>
-        <a mat-list-item [routerLink]="['/home']" (click)="cajon.toggle()">
-          <mat-icon color="accent">home</mat-icon>
-          Inicio
-        </a>
-        <a mat-list-item [routerLink]="['./perfil']" (click)="cajon.toggle()">
-          <mat-icon color="warn" >people</mat-icon>
-          Perfil
-        </a>
-        <a mat-list-item [routerLink]="['./ofertas']" (click)="cajon.toggle()">
-          <mat-icon color="primary" >work</mat-icon>
-          Ofertas de trabajo
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-    
-    
-    <mat-sidenav-content fxFlexFill>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav fxLayout="column" style="min-width: 300px" #cajon mode="side">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['./']" (click)="cajon.toggle()">
+        <mat-icon color="primary">work</mat-icon>
+        Ofertas de trabajo
+      </a>
+      <a   mat-list-item [routerLink]="['./perfil']" (click)="cajon.toggle()">
+        <mat-icon style="color: green">people</mat-icon>
+        Perfil
+      </a>
+
+      <a *ngIf="premium" mat-list-item [routerLink]="['./perfil']" (click)="cajon.toggle()">
+        <mat-icon style="color: green">attach_money</mat-icon>
+        Premium
+      </a>
+      <a mat-list-item (click)="cerrarsesion()">
+        <mat-icon style="color: red">input</mat-icon>
+
+        Cerrar sesion
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxFlexFill>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -47,7 +47,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PerfilComponent } from './perfil/perfil.component';
-import { LandingComponent } from './landing/landing.component';
 import { OfertasComponent } from './ofertas/ofertas.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -112,7 +111,6 @@ const materialModules = [
     RegisterComponent,
     HomeComponent,
     PerfilComponent,
-    LandingComponent,
     OfertasComponent,
     CrearofertaComponent,
     ChangePasswordComponent,

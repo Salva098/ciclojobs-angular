@@ -12,8 +12,14 @@ export class StripeService {
   urlapi="http://51.254.98.153/api/"
   constructor(private http : HttpClient) {}
 
+  existPremium(){
+    return this.http.get(this.urlapi+"Stripe/Exist",
+    {responseType: 'text'}
+    )
+  }
+
   generarUrlPago(empresa:empresa){
-    return this.http.post(this.urlapi+"Contract",empresa,
+    return this.http.post(this.urlapi+"Stripe",empresa,
     {responseType: 'text'}
     )
   }
