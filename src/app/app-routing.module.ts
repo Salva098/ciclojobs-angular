@@ -1,3 +1,4 @@
+import { PremiumComponent } from './premium/premium.component';
 import { OfertasComponent } from './ofertas/ofertas.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent,children:[
     { path: '', component: OfertasComponent }, 
     { path: 'perfil', component: PerfilComponent }, 
-    // { path: 'premium', component:  }, 
+    { path: 'premium', component:  PremiumComponent}, 
   ] },
 ];
 

@@ -1,0 +1,50 @@
+<div fxLayout="row" fxLayoutAlign="start center" style="height: 100px ;">
+    <div fxFlex="5"></div>
+    <mat-form-field appearance="fill">
+        <mat-label>Selecionar Ciclos</mat-label>
+        <mat-select [(value)]="cicloid">
+            <mat-option value=0>Ninguno</mat-option>
+            <mat-option *ngFor="let ciclo of ciclolist" value="{{ciclo.id}}">{{ciclo.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div fxFlex="3"></div>
+    <mat-form-field appearance="fill">
+        <mat-label>Selecionar Provincias</mat-label>
+        <mat-select [(value)]="provinciaid">
+            <mat-option value=0>Ninguno</mat-option>
+            <mat-option *ngFor="let prov of provincialist" value="{{prov.id}}">{{prov.provincias}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+
+<div>
+      <mat-grid-list fxFlex cols="4" rowHeight="300px" >
+          <mat-grid-tile *ngFor="let alumno of filtro()">
+            <mat-card
+            
+            [style.border]="'primary'"
+            class="cardciclo"
+            >
+            <mat-card-header>
+                <div fxFlex></div>
+                <button mat-icon-button>
+                    <mat-icon> email</mat-icon>
+                </button>
+            </mat-card-header>
+            <mat-card-body>
+          <p><strong>Ciclo:</strong> {{ alumno.ciclo.nombre }}</p>
+          <p>
+              <strong>Fecha Nacimiento:</strong>
+              {{ formatfecha(alumno.fechanacimiento) }}
+            </p>
+            <p><strong>Localidad:</strong> {{ alumno.localidad }}</p>
+            <p><strong>Provincia:</strong> {{ alumno.provincia.provincias }}</p>
+            <p><strong>Calificación Media:</strong> {{ alumno.calificacion_media }}</p>
+        </mat-card-body>
+    </mat-card>
+</mat-grid-tile>
+</mat-grid-list>
+
+
+</div>

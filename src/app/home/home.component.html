@@ -21,7 +21,7 @@
         Perfil
       </a>
 
-      <a *ngIf="premium" mat-list-item (click)="cajon.toggle()">
+      <a *ngIf="premium" mat-list-item [routerLink]="['./premium']"  (click)="cajon.toggle()">
         <mat-icon style="color: green">attach_money</mat-icon>
         Premium
       </a>

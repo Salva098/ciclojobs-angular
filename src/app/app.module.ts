@@ -56,6 +56,7 @@ import { authService } from './_servicies/auth.service';
 import { EnviarCorreoDialogComponent } from './enviar-correo-dialog/enviar-correo-dialog.component';
 import { EditarPerfilDialogComponent } from './editar-perfil-dialog/editar-perfil-dialog.component';
 import { PremiumDialogComponent } from './premium-dialog/premium-dialog.component';
+import { PremiumComponent } from './premium/premium.component';
 
 
 const materialModules = [
@@ -118,6 +119,7 @@ const materialModules = [
     EnviarCorreoDialogComponent,
     EditarPerfilDialogComponent,
     PremiumDialogComponent,
+    PremiumComponent,
 
   ],
   imports: [
