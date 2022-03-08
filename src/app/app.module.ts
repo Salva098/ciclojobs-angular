@@ -57,6 +57,7 @@ import { EnviarCorreoDialogComponent } from './enviar-correo-dialog/enviar-corre
 import { EditarPerfilDialogComponent } from './editar-perfil-dialog/editar-perfil-dialog.component';
 import { PremiumDialogComponent } from './premium-dialog/premium-dialog.component';
 import { PremiumComponent } from './premium/premium.component';
+import { PremiumMensajeComponent } from './premium-mensaje/premium-mensaje.component';
 
 
 const materialModules = [
@@ -120,6 +121,7 @@ const materialModules = [
     EditarPerfilDialogComponent,
     PremiumDialogComponent,
     PremiumComponent,
+    PremiumMensajeComponent,
 
   ],
   imports: [
