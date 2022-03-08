@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class RegisterService {
 
-  urlapi="http://51.254.98.153/api/"
+  urlapi="https://www.ciclojobs.ml/api/"
   constructor(private http : HttpClient) {}
 
   register(empresa:empresa):Observable<empresa>{

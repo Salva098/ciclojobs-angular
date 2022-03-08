@@ -9,7 +9,7 @@ import { provincia } from '../_models/provincias';
 })
 export class MensajeService {
 
-  urlapi="http://51.254.98.153/api/"
+  urlapi="https://www.ciclojobs.ml/api/"
   constructor(private http : HttpClient) {}
 
   EnviarMensaje(mensaje:mensaje){

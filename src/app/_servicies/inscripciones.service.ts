@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     providedIn: 'root'
   })
 export class InscripcionService{
-    urlapi="http://51.254.98.153/api/"
+    urlapi="https://www.ciclojobs.ml/api/"
 
     constructor(private http : HttpClient) {}
 

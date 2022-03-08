@@ -10,7 +10,7 @@ import { ofertacreate, ofertas } from "../_models/oferta";
 })
 export class EmpresaService{
  
-  urlapi="http://51.254.98.153/api/"
+  urlapi="https://www.ciclojobs.ml/api/"
   constructor(private http : HttpClient) {}
 
   getEmpresaid():Observable<empresa>{

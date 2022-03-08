@@ -10,7 +10,7 @@ import { ObservableInput } from 'rxjs';
 })
 export class CicloService {
 
-  urlapi="http://51.254.98.153/api/"
+  urlapi="https://www.ciclojobs.ml/api/"
   constructor(private http : HttpClient) {}
 
 
